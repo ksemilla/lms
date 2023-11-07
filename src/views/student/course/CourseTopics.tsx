@@ -368,13 +368,13 @@ export function CourseTopics() {
 
             <div className="bg-gray-200 p-4 rounded-md">
               <h3 className="text-sm font-medium leading-6 text-gray-900">
-                Activity - Final Exam
+                Activity - Quiz
               </h3>
               <Link
                 to="/student/courses/leadership-skills-101/requirements?resource=final_exam"
                 className="flex gap-2 text-md font-semibold leading-6 text-blue-500 hover:text-blue-800"
               >
-                Take final exam here <span aria-hidden="true">→</span>
+                Take quiz here <span aria-hidden="true">→</span>
               </Link>
             </div>
           </Tab.Panel>

@@ -53,7 +53,7 @@ const timeline = [
   {
     id: 5,
     content: "",
-    target: "Final Exam",
+    target: "Quiz",
     href: "#",
     date: "Oct 4",
     datetime: "2020-10-04",
@@ -279,7 +279,7 @@ export function CourseRequirements() {
               htmlFor="cover-photo"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              Final Exam
+              Quiz
             </label>
             <div className="mt-2 rounded-lg border-gray-900/25 pt-3 pb-5">
               <Link

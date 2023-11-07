@@ -14,16 +14,21 @@ export const useUserStore = create<UserStoreState>()((set, get) => ({
       id: uuidv4(),
       email: "student@student.com",
       role: UserRole.STUDENT,
+      password: "student",
+      imageUrl:
+        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
     },
     {
       id: uuidv4(),
       email: "trainer@trainer.com",
       role: UserRole.TRAINER,
+      password: "trainer",
     },
     {
       id: uuidv4(),
       email: "admin@admin.com",
       role: UserRole.ADMIN,
+      password: "admin",
     },
   ],
 

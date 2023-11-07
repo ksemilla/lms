@@ -18,10 +18,15 @@ import {
   CourseExam,
   StudentCalendar,
   StudentAdmin,
+  TrainerDashboard,
+  TrainerCourseHome,
+  TrainerCourseIntro,
 } from "./views"
 import { AuthContainer } from "./containers/AuthContainer"
 import { StudentContainer } from "./containers/StudentContainer"
 import { CourseContianer } from "./containers/CourseContainer"
+import { TrainerContainer } from "./containers/TrainerContainer"
+import { TrainerCourseContianer } from "./containers/TrainerCourseContainer"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -44,6 +49,18 @@ const router = createBrowserRouter(
           <Route path="grades" element={<StudentGrades />} />
           <Route path="calendar" element={<StudentCalendar />} />
           <Route path="admin" element={<StudentAdmin />} />
+        </Route>
+        <Route path="/trainer" element={<TrainerContainer />}>
+          <Route path="dashboard" element={<TrainerDashboard />} />
+          <Route path="classes/:slug" element={<TrainerCourseContianer />}>
+            <Route path="" element={<TrainerCourseHome />} />
+            <Route path="intro" element={<TrainerCourseIntro />} />
+            {/* <Route path="topics" element={<CourseTopics />} /> */}
+            {/* <Route path="requirements" element={<CourseRequirements />} /> */}
+            {/* <Route path="resources" element={<CourseResources />} /> */}
+            {/* <Route path="forum" element={<CourseForum />} /> */}
+            {/* <Route path="quiz" element={<CourseExam />} /> */}
+          </Route>
         </Route>
       </Route>
     </Route>

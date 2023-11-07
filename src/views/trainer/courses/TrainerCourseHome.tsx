@@ -6,6 +6,8 @@ import {
 } from "@heroicons/react/20/solid"
 import { classNames } from "../../../utils"
 import { useLocation } from "react-router-dom"
+import { PlusIcon } from "@heroicons/react/24/outline"
+import { MinusIcon } from "@heroicons/react/24/solid"
 
 const activity = [
   {
@@ -56,14 +58,48 @@ const activity = [
 ]
 
 function CourseAnnoucement() {
+  const [showInput, setShowInput] = useState(false)
   return (
     <div className="flow-root bg-white p-8">
       <div className="border-b border-gray-200 pb-5">
-        <h3 className="text-base font-semibold leading-6 text-gray-900">
-          Annoucements
+        <h3 className="text-base font-semibold leading-6 text-gray-900 flex items-center space-x-2">
+          <span>Annoucements</span>{" "}
+          {showInput ? (
+            <MinusIcon
+              className="h-5 cursor-pointer hover:text-blue-500"
+              onClick={() => setShowInput((prevState) => !prevState)}
+            />
+          ) : (
+            <PlusIcon
+              className="h-5 cursor-pointer hover:text-blue-500"
+              onClick={() => setShowInput((prevState) => !prevState)}
+            />
+          )}
         </h3>
       </div>
       <div className="mt-2 space-y-8 divide-y-2 divide-gray-50">
+        {showInput && (
+          <div className="space-y-2">
+            <div className="overflow-hidden rounded-lg pb-12 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+              <label htmlFor="comment" className="sr-only">
+                Add your comment
+              </label>
+              <textarea
+                rows={2}
+                name="comment"
+                id="comment"
+                className="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                placeholder="Add post here"
+              />
+            </div>
+            <button
+              type="button"
+              className="w-full rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Post
+            </button>
+          </div>
+        )}
         <figure className="pt-6 flex flex-auto flex-col justify-between">
           <blockquote className="text-lg leading-8 text-gray-700">
             <p>
@@ -273,10 +309,10 @@ function OnlineClass(props: {
           Live
         </span>
       </div>
-      <img src="https://i0.wp.com/www.alphr.com/wp-content/uploads/2020/10/Zoom-Share-Computer-Audio-1.png?w=690&ssl=1" />
+      <img src="https://slideuplift.com/wp-content/uploads/2020/10/ezgif.com-gif-maker-2021-02-08T123944.582.gif" />
       <button
         type="button"
-        className="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        className="rounded bg-white px-2 py-1 text-xs font-semibold text-indigo-900 shadow-sm ring-1 ring-inset ring-indigo-300 hover:bg-indigo-50"
         onClick={() => {
           props.setShowVideo(true)
         }}
@@ -287,7 +323,7 @@ function OnlineClass(props: {
   )
 }
 
-export function CourseHome() {
+export function TrainerCourseHome() {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const paramValue = searchParams.get("resource")
@@ -354,7 +390,7 @@ export function CourseHome() {
           </button>
         </div>
         <img
-          src="https://assets.zoom.us/images/en-us/desktop/mac/side-by-side-mode-stopped.png"
+          src="https://slideuplift.com/wp-content/uploads/2020/10/ezgif.com-gif-maker-2021-02-08T123944.582.gif"
           className="w-full"
         />
       </div>

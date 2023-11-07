@@ -7,13 +7,17 @@ import { StudentCourses } from "./student/StudentCourses"
 import { StudentCalendar } from "./student/StudentCalendar"
 import { StudentAdmin } from "./student/StudentAdmin"
 
-import { CourseHome } from "./student/course/CourseHome"
+import { CourseHome } from "./student/course/home"
 import { CourseIntro } from "./student/course/CourseIntro"
 import { CourseTopics } from "./student/course/CourseTopics"
 import { CourseRequirements } from "./student/course/CourseRequirements"
 import { CourseResources } from "./student/course/CourseResources"
 import { CourseForum } from "./student/course/CourseForum"
 import { CourseExam } from "./student/course/CourseExam"
+
+import { TrainerDashboard } from "./trainer/TrainerDashboard"
+import { TrainerCourseHome } from "./trainer/courses/TrainerCourseHome"
+import { TrainerCourseIntro } from "./trainer/courses/TrainerCourseIntro"
 
 export {
   Home,
@@ -30,4 +34,7 @@ export {
   CourseExam,
   StudentCalendar,
   StudentAdmin,
+  TrainerDashboard,
+  TrainerCourseHome,
+  TrainerCourseIntro,
 }

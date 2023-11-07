@@ -3,25 +3,46 @@ import { useNavigate } from "react-router-dom"
 import { useUserStore } from "../stores"
 import toast from "react-hot-toast"
 import { useAuthStore } from "../stores/auth"
+import { UserRole } from "../types"
+import { useState } from "react"
+import { Loader } from "../components/Loader"
 
 export function Login() {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm<{ email: string; password: string }>()
 
   const authStore = useAuthStore()
   const userStore = useUserStore()
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   const onSubmit = handleSubmit((data) => {
     const user = userStore.getUserByEmail(data.email)
-    if (user) {
-      navigate("/dashboard")
-      authStore.setUser(user)
-    } else {
+
+    if (!user) {
       toast.error(`No user found with email ${data.email}`)
+    } else if (user?.password !== data.password) {
+      toast.error(`Wrong password`)
+    } else {
+      authStore.setUser(user)
+      setLoading(true)
+      setTimeout(() => {
+        switch (user.role) {
+          case UserRole.TRAINER:
+            navigate("/trainer/dashboard")
+            break
+          case UserRole.ADMIN:
+            navigate("/trainer/dashboard")
+            break
+          default:
+            navigate("/student/dashboard")
+            break
+        }
+      }, 800)
     }
   })
 
@@ -136,9 +157,10 @@ export function Login() {
                   <div>
                     <button
                       type="submit"
-                      className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed"
+                      disabled={loading}
                     >
-                      Sign in
+                      {loading ? <Loader size={6} /> : "Sign in"}
                     </button>
                   </div>
                 </form>
@@ -149,26 +171,29 @@ export function Login() {
                     type="button"
                     className="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
                     onClick={() => {
-                      const user = userStore.getUserByEmail(
-                        "student@student.com"
-                      )
-                      if (user) {
-                        navigate("/student/dashboard")
-                        authStore.setUser(user)
-                      }
+                      setValue("email", "student@student.com")
+                      setValue("password", "student")
                     }}
                   >
                     Student
                   </button>
                   <button
                     type="button"
-                    className="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10 cursor-not-allowed"
+                    className="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                    onClick={() => {
+                      setValue("email", "trainer@trainer.com")
+                      setValue("password", "trainer")
+                    }}
                   >
                     Trainer
                   </button>
                   <button
                     type="button"
-                    className="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10 cursor-not-allowed"
+                    className="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                    onClick={() => {
+                      setValue("email", "admin@admin.com")
+                      setValue("password", "admin")
+                    }}
                   >
                     Admin
                   </button>

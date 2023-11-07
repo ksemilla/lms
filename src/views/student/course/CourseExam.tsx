@@ -78,7 +78,7 @@ export function CourseExam() {
     <div className="bg-white p-4">
       <div className="ml-7 border-b-2 border-gray-700 pb-4">
         <h1 className="block text-xl font-bold leading-6 text-gray-900">
-          Final Exam
+          Quiz
         </h1>
         <p className="mt-1">Instructions</p>
         <p className="mt-1 text-gray-700 text-md">

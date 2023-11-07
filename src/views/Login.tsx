@@ -54,7 +54,7 @@ export function Login() {
             <div>
               <img
                 className="h-10 w-auto cursor-pointer"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                src="/src/assets/icon.png"
                 alt="Your Company"
                 onClick={() => navigate("/")}
               />

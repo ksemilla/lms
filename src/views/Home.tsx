@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Dialog } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { Link } from "react-router-dom"
+import logo1 from "../assets/logo_1.png"
+import logoIcon from "../assets/icon.png"
 
 const navigation = [
   { name: "Courses", href: "#" },
@@ -22,11 +24,7 @@ export function Home() {
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+              <img className="h-8 w-auto" src={logoIcon} alt="" />
             </a>
           </div>
           <div className="flex lg:hidden">
@@ -158,6 +156,9 @@ export function Home() {
             <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
+                  <div className="rounded-xl overflow-hidden inline-block">
+                    <img src={logo1} />
+                  </div>
                   <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                     We’re changing the way students connect.
                   </h1>
@@ -175,12 +176,6 @@ export function Home() {
                     >
                       Get started
                     </Link>
-                    <a
-                      href="#"
-                      className="text-sm font-semibold leading-6 text-gray-900"
-                    >
-                      Live demo <span aria-hidden="true">→</span>
-                    </a>
                   </div>
                 </div>
                 <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
